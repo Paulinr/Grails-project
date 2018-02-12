@@ -34,7 +34,7 @@
                 </fieldset>
             </g:form>
             %{--<g:form resource="${this.image}" method="POST">
-                <fieldset class="form">
+                <fieldset class="form ">
                     <f:all bean="image"/>
                 </fieldset>
                 <fieldset class="buttons">
