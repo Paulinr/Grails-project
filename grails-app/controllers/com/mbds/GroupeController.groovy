@@ -5,18 +5,19 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 
-@Secured(['ROLE_ADMIN', 'ROLE_USER'])
+@Secured(['ROLE_ADMIN', 'ROLE_MODER'])
 class GroupeController {
 
     GroupeService groupeService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['permitAll'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond groupeService.list(params), model:[groupeCount: groupeService.count()]
     }
-
+    @Secured(['permitAll'])
     def show(Long id) {
         respond groupeService.get(id)
     }

@@ -34,13 +34,12 @@
             </div>
             <div class="col-lg-10">
                 <section class="row colset-2-its">
-                    <h1>Welcome to Grails</h1>
+                    <h1>Welcome </h1>
 
                     <p>
-                        Congratulations, you have successfully started your first Grails application! At the moment
-                        this is the default page, feel free to modify it to either redirect to a controller or display
-                        whatever content you may choose. Below is a list of controllers that are currently deployed in
-                        this application, click on each to execute its default action:
+                        Result Technology Systems, est une société électro-informatique,  composés d'ingénieurs en électronique et informatique,
+                        motivés par la passion  de leur métier, désireux de mettre leur savoir faire au service de toute entité  ayant un quelconque
+                        besoin dans les domaines précités.
                     </p>
                 </section>
             </div>

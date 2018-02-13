@@ -7,10 +7,10 @@ grails.plugin.springsecurity.authority.className = 'com.mbds.Role'
 grails.plugin.springsecurity.requestMap.className = 'com.mbds.UserRole'
 grails.plugin.springsecurity.securityConfigType = 'Annotation'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['ROLE_ADMIN','ROLE_USER']],
+	[pattern: '/',               access: ['ROLE_ADMIN','ROLE_MODER','ROLE_USER']],
 	[pattern: '/error',          access: ['permitAll']],
-	[pattern: '/index',          access: ['ROLE_ADMIN','ROLE_USER']],
-	[pattern: '/index.gsp',      access: ['ROLE_ADMIN','ROLE_USER']],
+	[pattern: '/index',          access: ['ROLE_ADMIN','ROLE_MODER','ROLE_USER']],
+	[pattern: '/index.gsp',      access: ['ROLE_ADMIN','ROLE_MODER','ROLE_USER']],
 	[pattern: '/shutdown',       access: ['permitAll']],
 	[pattern: '/assets/**',      access: ['permitAll']],
 	[pattern: '/**/js/**',       access: ['permitAll']],

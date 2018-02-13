@@ -4,72 +4,72 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-@Secured(['ROLE_ADMIN', 'ROLE_MODER'])
-class ImageController {
 
-    ImageService imageService
+@Secured(['ROLE_ADMIN', 'ROLE_MODER'])
+class CommentController {
+
+    CommentService commentService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond imageService.list(params), model:[imageCount: imageService.count()]
+        respond commentService.list(params), model:[commentCount: commentService.count()]
     }
 
     def show(Long id) {
-        respond imageService.get(id)
+        respond commentService.get(id)
     }
 
     def create() {
-        respond new Image(params)
+        respond new Comment(params)
     }
 
-    def save(Image image) {
-        if (image == null) {
+    def save(Comment comment) {
+        if (comment == null) {
             notFound()
             return
         }
 
         try {
-            imageService.save(image)
+            commentService.save(comment)
         } catch (ValidationException e) {
-            respond image.errors, view:'create'
+            respond comment.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'image.label', default: 'Image'), image.id])
-                redirect image
+                flash.message = message(code: 'default.created.message', args: [message(code: 'comment.label', default: 'Comment'), comment.id])
+                redirect comment
             }
-            '*' { respond image, [status: CREATED] }
+            '*' { respond comment, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond imageService.get(id)
+        respond commentService.get(id)
     }
 
-    def update(Image image) {
-        if (image == null) {
+    def update(Comment comment) {
+        if (comment == null) {
             notFound()
             return
         }
 
         try {
-            imageService.save(image)
+            commentService.save(comment)
         } catch (ValidationException e) {
-            respond image.errors, view:'edit'
+            respond comment.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'image.label', default: 'Image'), image.id])
-                redirect image
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'comment.label', default: 'Comment'), comment.id])
+                redirect comment
             }
-            '*'{ respond image, [status: OK] }
+            '*'{ respond comment, [status: OK] }
         }
     }
 
@@ -79,11 +79,11 @@ class ImageController {
             return
         }
 
-        imageService.delete(id)
+        commentService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'image.label', default: 'Image'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'comment.label', default: 'Comment'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -93,7 +93,7 @@ class ImageController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'image.label', default: 'Image'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'comment.label', default: 'Comment'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

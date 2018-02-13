@@ -1,7 +1,10 @@
 package com.mbds
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+
+@Secured(['ROLE_ADMIN', 'ROLE_MODER'])
 
 class UserController {
 
@@ -13,7 +16,7 @@ class UserController {
         params.max = Math.min(max ?: 10, 100)
         respond userService.list(params), model:[userCount: userService.count()]
     }
-
+    @Secured(['ROLE_ADMIN', 'ROLE_MODER', 'ROLE_USER'])
     def show(Long id) {
         respond userService.get(id)
     }
